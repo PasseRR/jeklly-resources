@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% include sidebar.html %}
+{% remote_include https://passerr.github.io/jeklly-resources/include/sidebar.html %}
 <div class="post">
     <header class="post-header">
         <h1>{{ page.title }}</h1>
@@ -13,6 +13,6 @@ layout: default
     </article>
 
     <div class="share">
-        {% include share.html %}
+		{% remote_include https://passerr.github.io/jeklly-resources/include/share.html %}
     </div>
 </div>

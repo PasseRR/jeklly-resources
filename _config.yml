@@ -4,7 +4,7 @@ author: PasseRR
 github: https://github.com/PasseRR
 about: I'm a javaer.
 email: xie__hai@sina.com
-avatar_url: https://cdn.jsdelivr.net/gh/PasseRR/passerr.github.io/static/img/avatar.jpg
+avatar_url: https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/img/avatar.jpg
 
 enableTags: true
 tagarray: []
@@ -14,7 +14,7 @@ collections:
     output: true
     permalink: /project/:path/
 
-url: "https://passerr.github.io"
+url: "https://jekyll-blog-theme"
 baseurl: ""
 paginate: 15
 per_page: 15

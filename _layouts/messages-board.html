@@ -1,0 +1,56 @@
+---
+layout: page
+---
+<meta name="bmob-app-id" content="{{ site.bmob-app-id }}"/>
+<meta name="bmob-rest-key" content="{{ site.bmob-rest-key }}"/>
+<meta name="bmob-message-table" content="{{ site.bmob-message-table }}"/>
+<link rel="stylesheet" href="/extension/message/bmob.css">
+<script src="//cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/js/jquery-3.2.1.min.js"></script>
+<script src="/extension/message/bmob.js"></script>
+<div>
+    <button class="btn btn-success pull-right" onclick="openModal()"><span class="fa fa-edit">&nbsp;留言</span></button>
+    <div class="panel panel-white post">
+        <div class="post-footer">
+            <span id="noResults">暂无数据</span>
+            <ul class="comments-list" id="commentsList"></ul>
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id="pagination"></ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">填写留言</h4>
+                </div>
+                <form id="form" role="form">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="name"><span style="color: red">*</span> 昵称</label>
+                            <input type="text" name="name" class="form-control" id="name"
+                                   maxlength="36" placeholder="昵称" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">联系方式</label>
+                            <input type="text" name="contact" class="form-control" id="contact"
+                                   maxlength="64" placeholder="联系方式">
+                        </div>
+                        <div class="form-group">
+                            <label for="message"><span style="color: red">*</span>留言内容</label>
+                            <textarea rows="3" name="msg" class="form-control" id="message" placeholder="留言内容"
+                                      maxlength="256" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" id="btn_subComment" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

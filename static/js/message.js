@@ -7,7 +7,7 @@ $(document).ready(function () {
     setComment(issuesUrl);
 })
 
-function getIssueId(){
+function getIssueId() {
     return $('meta[name="message_board_issue_id"]').attr("content");
 }
 
@@ -56,14 +56,10 @@ function login() {
 }
 
 function subComment() {
-    var title = getTitle();
     var USERNAME = $("#txt_username").val();
     var PASSWORD = document.getElementById("txt_password").value; //
     // 未开启评论
-    if (typeof($("#commentsList").attr("data_comments_url")) == "undefined") {
-        if (title == undefined || title == null || title == "") {
-            return;
-        }
+    if (typeof ($("#commentsList").attr("data_comments_url")) == "undefined") {
         var createIssueJson = "{\"title\": \"" + title + "\"}";
         $.ajax({
             type: "POST",
@@ -77,13 +73,13 @@ function subComment() {
             success: function () {
                 // console.log('开启评论成功:' + title);
                 //重新遍历issue list
-                setComment(getIssuesUrl(), title);
+                setComment(getIssuesUrl());
             }
         });
     }
     // console.log("准备提交评论");
     // 已开启评论
-    if (typeof($("#commentsList").attr("data_comments_url")) != "undefined") {
+    if (typeof ($("#commentsList").attr("data_comments_url")) != "undefined") {
         var issueURL = $("#commentsList").attr("data_comments_url");
         var comment = $("#comment_txt").val();
         var commentJson = "{\"body\": \"" + comment + "\"}";
@@ -104,9 +100,7 @@ function subComment() {
             data: commentJson,
             success: function () {
                 // 更新评论区
-                if (title != null) {
-                    setComment(getIssuesUrl(), title);
-                }
+                setComment(getIssuesUrl());
 
                 $("#comment_txt").val('');
             },

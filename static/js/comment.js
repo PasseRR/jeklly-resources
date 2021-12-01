@@ -1,12 +1,15 @@
 // fork from https://github.com/YangHanqing/yanghanqing.github.io
 $(document).ready(function () {
-    var user = getUser();
-    var issuesHTML = 'https://github.com/' + user + '/' + user + '.github.io/issues'
+    var issuesUrl = getIssuesUrl();
 
     $("#commentsList").removeAttr('data_comments_url');
-    $("#tips").html("我们不会获取您的用户名和密码,评论直接通过 HTTPS 与 Github API交互,<br>如果您开启了两步验证,请在博客的<a  target=\"_blank\" href=\"" + issuesHTML + "\">Github issues</a>下添加 Comment");
-    setCommentURL(getIssuesUrl(), getTitle());
-});
+    $("#tips").html("我们不会获取您的用户名和密码,评论直接通过 HTTPS 与 Github API交互,<br>如果您开启了两步验证,请在博客的<a  target=\"_blank\" href=\"" + issuesUrl + "\">Github issues</a>下添加留言");
+    setComment(issuesUrl);
+})
+
+function getIssueId(){
+    return $('meta[name="message_board_issue_id"]').attr("content");
+}
 
 function getUser() {
     return $('meta[name="author"]').attr("content");
@@ -14,45 +17,17 @@ function getUser() {
 
 function getIssuesUrl() {
     var user = getUser();
-    return 'https://api.github.com/repos/' + user + '/' + user + '.github.io/issues';
+    return 'https://api.github.com/repos/' + user + '/' + user + '.github.io/issues/' + getIssueId();
 }
 
-function getTitle() {
-    var publishTime = $("meta[property='article:published_time']").attr("content");
-    var title = $("meta[property='og:title']").attr("content");
-    return publishTime.substring(0, 10) + " " + title;
-}
-
-
-function setCommentURL(issuesList, blogName) {
+function setComment(issuesUrl) {
     $("#comments").show();
-    $.ajax({
-        type: "GET",
-        url: issuesList,
-        dataType: 'json',
-        async: false,
-        success: function (json) {
-            for (var i = 0; i < json.length; i++) {
-                var title = json[i].title; // Blog title
-                var comments_url = json[i].comments_url;
-                if (title == blogName) {
-                    // console.log("该文章存在评论")
-                    $('#commentsList').attr("data_comments_url", comments_url);
-                    setComment(comments_url);
-                    break;
-                }
-                $("#commentsList").children().remove();
-                $("#commentsList").removeAttr('data_comments_url');
-            }
-        }
-    });
-}
-
-
-function setComment(commentURL) {
+    $("#commentsList").children().remove();
+    $("#commentsList").removeAttr('data_comments_url');
+    $('#commentsList').attr("data_comments_url", issuesUrl);
     $('#commentsList').children().remove();
 
-    $.getJSON(commentURL, function (json) {
+    $.getJSON(issuesUrl + '/comments', function (json) {
         for (var i = 0; i < json.length; i++) {
             var avatar_url = json[i].user.avatar_url; // avatar_url
             var user = json[i].user.login;
@@ -74,7 +49,6 @@ function setComment(commentURL) {
             $('#commentsList').prepend(new_obj);
         }
     });
-
 }
 
 function login() {
@@ -103,7 +77,7 @@ function subComment() {
             success: function () {
                 // console.log('开启评论成功:' + title);
                 //重新遍历issue list
-                setCommentURL(getIssuesUrl(), title);
+                setComment(getIssuesUrl(), title);
             }
         });
     }
@@ -131,7 +105,7 @@ function subComment() {
             success: function () {
                 // 更新评论区
                 if (title != null) {
-                    setCommentURL(getIssuesUrl(), title);
+                    setComment(getIssuesUrl(), title);
                 }
 
                 $("#comment_txt").val('');

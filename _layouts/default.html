@@ -16,8 +16,9 @@ layout: compress
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
     <meta content="{{ site.share.fb_appid }}" property="fb:app_id">
     <meta content="{{ site.title }}" property="og:site_name">
+    <meta content="{{ site.message_board_issue_id }}" name="message_board_issue_id">
 
-    {% if page.noindex %}
+    {% if page.noindex %}</meta>
     <meta name="robots" content="noindex">
     {% endif %}
 

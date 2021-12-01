@@ -6,7 +6,7 @@ $(document).ready(function () {
 function getIssuesUrl() {
     var user = $('meta[name="author"]').attr("content");
     var issueId = $('meta[name="message_board_issue_id"]').attr("content");
-    return 'https://api.github.com/repos/' + user + '/' + user + '.github.io/issues/' + issueId;
+    return 'https://api.github.com/repos/' + user + '/' + user + '.github.io/issues/' + issueId + '/comments';
 }
 
 function setComment() {
@@ -21,7 +21,7 @@ function setComment() {
     $('#commentsList').attr("data_comments_url", issuesUrl);
     $('#commentsList').children().remove();
 
-    $.getJSON(issuesUrl + '/comments', function (json) {
+    $.getJSON(issuesUrl, function (json) {
         for (var i = 0; i < json.length; i++) {
             var avatar_url = json[i].user.avatar_url; // avatar_url
             var user = json[i].user.login;

@@ -112,6 +112,14 @@ layout: compress
         gtag('js', new Date());
 
         gtag('config', '{{ site.ga }');
+
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?{{ site.hm }}";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 </head>
 <body>

@@ -107,5 +107,5 @@ function renderData(data, current) {
 }
 
 function openModal() {
-    $('#myModal').modal();
+    $('#myModal').modal({keyboard: false, backdrop: 'static'});
 }

@@ -99,15 +99,15 @@ http://www.tipue.com/search
      color: #666;    
 	margin-top: 21px;
 }
-.tipue_search_content_title a
-{
-     color: #666;
-     text-decoration: none;
-}
-.tipue_search_content_title a:hover
-{
-     color: #666;
-}
+/*.tipue_search_content_title a*/
+/*{*/
+/*     color: #666;*/
+/*     text-decoration: none;*/
+/*}*/
+/*.tipue_search_content_title a:hover*/
+/*{*/
+/*     color: #666;*/
+/*}*/
 .tipue_search_content_url
 {
      word-wrap: break-word;

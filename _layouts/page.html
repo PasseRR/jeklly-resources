@@ -6,23 +6,6 @@ layout: default
         <h1 class="post-title">{{ page.title }}</h1>
         <hr/>
     </header>
-    {% if page.mermaid %}
-    <script src="//cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
-    <script>
-        $(function () {
-            mermaid.initialize({
-                startOnLoad: true,
-                // default, dark, neutral, forest
-                theme: "default",
-                flowchart: {
-                    useMaxWidth: true,
-                    htmlLabels: true
-                }
-            });
-            window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
-        });
-    </script>
-    {% endif %}
     <div class="post-content">
         {{ content }}
     </div>

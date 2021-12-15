@@ -137,25 +137,6 @@ layout: compress
     </script>
 </head>
 <body>
-
-{% if page.mermaid %}
-<script src="//cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
-<script>
-    $(function () {
-        mermaid.initialize({
-            startOnLoad: true,
-            // default, dark, neutral, forest
-            theme: "default",
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true
-            }
-        });
-        window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
-    });
-</script>
-{% endif %}
-
 <div class="container">
     <div class="col-sm-3">
         <div class="fixed-condition">

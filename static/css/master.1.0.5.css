@@ -67,6 +67,7 @@ a:hover {
 
 /* Content */
 div.content pre {
+    background: #272822;
     padding: 10px;
     color: #FFF;
     overflow-x: auto;

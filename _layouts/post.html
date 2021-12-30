@@ -2,7 +2,7 @@
 layout: default
 ---
 <header class="post-header">
-  <h1 class="post-title">{{ page.title }}</h1>
+    <h1 class="post-title">{{ page.title }}</h1>
 </header>
 
 <div class="pull-right">
@@ -22,6 +22,9 @@ layout: default
             mermaid.initialize({
                 startOnLoad: true,
                 theme: "dark",
+                sequence: {
+                    noteAlign: 'left'
+                },
                 flowchart: {
                     useMaxWidth: true,
                     htmlLabels: true
@@ -31,44 +34,45 @@ layout: default
         });
     </script>
     {% endif %}
-  <div class="post">{{ content }}</div>
-  {% include share-page.html %}
+    <div class="post">{{ content }}</div>
+    {% include share-page.html %}
 </div>
 
 {% assign hasSimilar = '' %}
-  {% for post in site.posts  %}
-    {% assign postHasSimilar = false %}
-      {% for tag in post.categories %}
-        {% for thisTag in page.categories %}
-          {% if postHasSimilar == false and hasSimilar.size < 6 and post != page and tag == thisTag %}
-            {% if hasSimilar.size == 0 %}
-            <div class="panel-body">
-              <h4>相关文章</h4>
-              <ul>
-            {% endif %}
-                <li class="relatedPost">
-                  <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-                  {% if post.categories %}
-                      &raquo; {% for category in post.categories %}<a href="/category/{{ category }}.html">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}
-                  {% endif %}
-                </li>
-          {% capture hasSimilar %}{{ hasSimilar }}*{% endcapture %}
-          {% assign postHasSimilar = true %}
+{% for post in site.posts  %}
+{% assign postHasSimilar = false %}
+{% for tag in post.categories %}
+{% for thisTag in page.categories %}
+{% if postHasSimilar == false and hasSimilar.size < 6 and post != page and tag == thisTag %}
+{% if hasSimilar.size == 0 %}
+<div class="panel-body">
+    <h4>相关文章</h4>
+    <ul>
         {% endif %}
-      {% endfor %}
-    {% endfor %}
-  {% endfor %}
-  {% if hasSimilar.size > 0 %}
-  </ul>
+        <li class="relatedPost">
+            <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+            {% if post.categories %}
+            &raquo; {% for category in post.categories %}<a href="/category/{{ category }}.html">{{ category }}</a>{% if
+            forloop.last == false %}, {% endif %}{% endfor %}
+            {% endif %}
+        </li>
+        {% capture hasSimilar %}{{ hasSimilar }}*{% endcapture %}
+        {% assign postHasSimilar = true %}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        {% if hasSimilar.size > 0 %}
+    </ul>
 </div>
 {% endif %}
 
 <!-- 时间倒叙 前一篇和后一篇是反的 -->
 <div class="PageNavigation">
-  {% if page.next.url %}
+    {% if page.next.url %}
     <a class="prev" href="{{ page.next.url }}">&laquo; {{ page.next.title }}</a>
-  {% endif %}
-  {% if page.previous.url %}
+    {% endif %}
+    {% if page.previous.url %}
     <a class="next pull-right" href="{{ page.previous.url }}">{{ page.previous.title }} &raquo;</a>
-  {% endif %}
+    {% endif %}
 </div>

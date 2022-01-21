@@ -9,7 +9,7 @@ layout: compress
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% assign f = site.static_files | where_exp:'f',"f.name == 'favicon.ico'" %}
     {% if f.size == 0 %}
-    <link rel="shortcut icon" href="{{ site.icon | default: '//cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/img/favicon.ico' }}"/>
+    <link rel="shortcut icon" href="{{ site.icon | default: '//cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/img/favicon-psr.ico' }}"/>
     {% endif %}
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title}}{% endif %}</title>
     <meta name="author" content="{{ site.author | default: 'PasseRR'}}"/>

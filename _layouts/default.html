@@ -10,7 +10,7 @@ layout: compress
     {% assign f = site.static_files | where_exp:'f',"f.name == 'favicon.ico'" %}
     {% if f.size == 0 %}
     <link rel="shortcut icon"
-          href="{{ site.icon | default: 'https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/img/favicon-psr.ico' }}"/>
+          href="{{ site.icon | default: '{{theme-cdn}}/static/img/favicon-psr.ico' }}"/>
     {% endif %}
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title}}{% endif %}</title>
     <meta name="author" content="{{ site.author | default: 'PasseRR'}}"/>
@@ -91,38 +91,39 @@ layout: compress
     {% endif %}
 
     <!-- Font awesome icons -->
-    <link href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/font-awesome-4.6.3.min.css"
+    <link href="{{theme-cdn}}/static/css/font-awesome-4.6.3.min.css"
           rel="stylesheet">
     <!-- syntax highlighting CSS -->
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/syntax.css">-->
+    <!--<link rel="stylesheet" href="{{theme-cdn}}/static/css/syntax.css">-->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/rouge-highlight-colorful-1.0.3.css">
+          href="{{theme-cdn}}/static/css/rouge-highlight-colorful-1.0.3.css">
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{theme-cdn}}/static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext"
           rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/super-search.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/thickbox.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/projects.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/master.1.0.8.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/color.min.css">
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/super-search.min.css">
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/thickbox.min.css">
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/projects.min.css">
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/master.1.0.8.css">
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/color.min.css">
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/tipuesearch.1.0.1.css">
+          href="{{theme-cdn}}/static/css/tipuesearch.1.0.1.css">
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/js/thickbox-compressed.js"></script>
+    <script src="{{theme-cdn}}/static/js/jquery-3.2.1.min.js"></script>
+    <script src="{{theme-cdn}}/static/js/bootstrap.min.js"></script>
+    <script src="/assets/js/thickbox-image.js"></script>
+    <script src="{{theme-cdn}}/static/js/thickbox-compressed.1.0.1.js"></script>
 
     {% if page.layout == "messages-board" %}
     <meta name="bmob-app-id" content="{{ site.bmob-app-id }}"/>
     <meta name="bmob-rest-key" content="{{ site.bmob-rest-key }}"/>
     <meta name="bmob-message-table" content="{{ site.bmob-message-table }}"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/css/bmob.min.css">
-    <script src="https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/js/bmob.1.0.1.min.js"></script>
+    <link rel="stylesheet" href="{{theme-cdn}}/static/css/bmob.min.css">
+    <script src="{{theme-cdn}}/static/js/bmob.1.0.1.min.js"></script>
     {% endif %}
 
     <!-- Google Analytics -->
@@ -158,7 +159,7 @@ layout: compress
     <div class="col-sm-3 blog-left" style="">
         <div class="fixed-condition">
             <a href="/"><img class="profile-avatar"
-                             src="{{ site.avatar_url | default: 'https://cdn.jsdelivr.net/gh/PasseRR/jekyll-blog-theme/static/img/avatar.jpg'}}"
+                             src="{{ site.avatar_url | default: '{{theme-cdn}}/static/img/avatar.jpg'}}"
                              height="75px" width="75px"/></a>
             <h1 class="author-name">{{ site.author | default: 'PasseRR'}}</h1>
             <div class="profile-about">
@@ -167,7 +168,8 @@ layout: compress
             <div class="social">
                 <ul>
                     {% for link in site.data.social %}
-                    <li><a href="{{ link.link }}" target="_blank" title="{{ link.name }}"><i class="fa {{ link.icon }}"></i></a></li>
+                    <li><a href="{{ link.link }}" target="_blank" title="{{ link.name }}"><i
+                            class="fa {{ link.icon }}"></i></a></li>
                     {% endfor %}
                 </ul>
             </div>

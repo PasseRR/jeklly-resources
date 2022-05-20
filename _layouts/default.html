@@ -10,7 +10,7 @@ layout: compress
     {% assign f = site.static_files | where_exp:'f',"f.name == 'favicon.ico'" %}
     {% if f.size == 0 %}
     <link rel="shortcut icon"
-          href="{{ site.icon | default: '{{theme-cdn}}/assets/img/favicon-psr.ico' }}"/>
+          href="{{ site.icon | default: '/assets/img/favicon-psr.ico' }}"/>
     {% endif %}
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title}}{% endif %}</title>
     <meta name="author" content="{{ site.author | default: 'PasseRR'}}"/>
@@ -159,7 +159,7 @@ layout: compress
     <div class="col-sm-3 blog-left" style="">
         <div class="fixed-condition">
             <a href="/"><img class="profile-avatar"
-                             src="{{ site.avatar_url | default: '{{theme-cdn}}/assets/img/avatar.jpg'}}"
+                             src="{{ site.avatar_url | default: '/assets/img/avatar.jpg'}}"
                              height="75px" width="75px"/></a>
             <h1 class="author-name">{{ site.author | default: 'PasseRR'}}</h1>
             <div class="profile-about">

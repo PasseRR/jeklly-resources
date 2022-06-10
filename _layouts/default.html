@@ -90,6 +90,12 @@ layout: compress
     <meta name="twitter:image:src" content="{{ site.url }}/{{ page.header-img }}">
     {% endif %}
 
+    <!-- 字体预加载 -->
+    <link rel="preload" href="{{site.theme-cdn}}/assets/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2">
+    <link rel="preload" href="{{site.theme-cdn}}/assets/fonts/latin-italic-300.woff2" as="font" type="font/woff2">
+    <link rel="preload" href="{{site.theme-cdn}}/assets/fonts/latin-normal-300.woff2" as="font" type="font/woff2">
+    <link rel="preload" href="{{site.theme-cdn}}/assets/fonts/latin-normal-400.woff2" as="font" type="font/woff2">
+    
     <!-- Font awesome icons -->
     <link href="{{site.theme-cdn}}/assets/css/font-awesome-4.6.3.min.css"
           rel="stylesheet">

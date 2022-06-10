@@ -97,7 +97,7 @@ function renderData(data, current) {
                                     .append($('<h4 class="user"></h4>').text(e.name))
                                     .append($('<h4 class="time"></h4>').text(e.createdAt))
                             )
-                            .append($('<p style="font-size: 13px;word-wrap: break-word;"></p>').text(e.msg))
+                            .append($('<p style="font-size: 13px;word-wrap: break-word;white-space:pre-line;"></p>').text(e.msg))
                     )
             );
         });

@@ -1,13 +1,12 @@
-var headers = {
-        "Content-Type": "application/json",
-        "X-Bmob-Application-Id": $('meta[name="bmob-app-id"]').attr('content'),
-        "X-Bmob-REST-API-Key": $('meta[name="bmob-rest-key"]').attr('content')
-    },
+var key = $('meta[name="bmob-app-id"]').attr('content'),
+    token = $('meta[name="bmob-rest-key"]').attr('content'),
     perPage = 8,
-    url = 'https://api2.bmob.cn/1/classes/' + ($('meta[name="bmob-message-table"]').attr('content') || 'message');
+    // trello = "https://api.trello.com/1/cards/632d5e7da375620029986942/actions?key=3f2b257266b4f2f0ebf13e96776cb0f3&token=346e810c8fe7cfccd6d403fb86c96489c9d1716555d87b9f28c5cfe8f2d055fd&limit=2&fields=data,date&memberCreator=false&member=false&page=0";
+    url = "https://api.trello.com/1/cards/" + $('meta[name="bmob-message-table"]').attr('content') + "/actions",
+    pages = 0;
 
 $(document).ready(function () {
-    loadMessage(1);
+    initMessage();
     $("#form").submit(function (e) {
         e.preventDefault();
 
@@ -19,8 +18,12 @@ $(document).ready(function () {
 
         $.ajax({
             dataType: "json",
-            data: JSON.stringify(d),
-            url: url,
+            data: {
+                text: JSON.stringify(d),
+                key: key,
+                token: token
+            },
+            url: url + "/comments",
             type: 'post',
             headers: headers,
             error: function (e) {
@@ -28,29 +31,48 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('#myModal').modal('hide');
-                loadMessage(1);
+                initMessage();
                 $("form")[0].reset();
             }
         });
     });
 })
 
-function loadMessage(page) {
-    var offset = (page - 1) * perPage;
-    // var commentHtml =
-    //     "<li class=\"comment\">" +
-    //     "<div class=\"comment-body\"><div class=\"comment-heading\"><h4 class=\"user\">" + user +
-    //     "</h4><h5 class=\"time\">" + updated_at +
-    //     "</h5></div><p>" + body +
-    //     "</p></div></li>";
+function initMessage() {
     $.ajax({
         dataType: 'json',
         data: {
+            "key": key,
+            "token": token,
+            "format": "count",
+            "fields": "id",
+            "memberCreator": false,
+            "member": false
+        },
+        url: url,
+        headers: headers,
+        success: function (data) {
+            pages = Math.ceil(data._value / perPage);
+            loadMessage(1);
+        },
+        error: function (e) {
+            console.info(e);
+            renderData({results: [], count: 0}, 1);
+        }
+    });
+}
+
+function loadMessage(page) {
+    $.ajax({
+        dataType: 'json',
+        data: {
+            "key": key,
+            "token": token,
             "limit": perPage,
-            "skip": offset,
-            "count": 1,
-            "order": "-createdAt",
-            "keys": "contact,msg,name"
+            "page": page - 1,
+            "fields": "data,date",
+            "memberCreator": false,
+            "member": false
         },
         url: url,
         headers: headers,
@@ -70,7 +92,6 @@ function loadMessage(page) {
 function renderData(data, current) {
     $("#noResults").hide();
     if (data.count) {
-        var pages = Math.ceil(data.count / perPage);
         $('#commentsList').children().remove();
         $('#pagination').children().remove();
         if (pages > 1) {
@@ -88,16 +109,17 @@ function renderData(data, current) {
         }
 
         $.each(data.results, function (i, e) {
+            var data = JSON.parse(e.data.text());
             $('#commentsList').append(
                 $('<li class="comment"></li>')
                     .append(
                         $('<div class="comment-body"></div>')
                             .append(
                                 $('<div class="comment-heading"></div>')
-                                    .append($('<h4 class="user"></h4>').text(e.name))
-                                    .append($('<h4 class="time"></h4>').text(e.createdAt))
+                                    .append($('<h4 class="user"></h4>').text(data.name))
+                                    .append($('<h4 class="time"></h4>').text(new Date(e.date).toLocaleString()))
                             )
-                            .append($('<p style="font-size: 13px;word-wrap: break-word;white-space:pre-line;"></p>').text(e.msg))
+                            .append($('<p style="font-size: 13px;word-wrap: break-word;white-space:pre-line;"></p>').text(e.content))
                     )
             );
         });

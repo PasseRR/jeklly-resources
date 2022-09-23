@@ -1,5 +1,6 @@
 var key = $('meta[name="bmob-app-id"]').attr('content'),
     token = $('meta[name="bmob-rest-key"]').attr('content'),
+    headers = {'Accept': 'application/json'},
     perPage = 8,
     // trello = "https://api.trello.com/1/cards/632d5e7da375620029986942/actions?key=3f2b257266b4f2f0ebf13e96776cb0f3&token=346e810c8fe7cfccd6d403fb86c96489c9d1716555d87b9f28c5cfe8f2d055fd&limit=2&fields=data,date&memberCreator=false&member=false&page=0";
     url = "https://api.trello.com/1/cards/" + $('meta[name="bmob-message-table"]').attr('content') + "/actions",

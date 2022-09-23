@@ -109,7 +109,7 @@ function renderData(data, current) {
             }
         }
 
-        $.each(data.results, function (i, e) {
+        $.each(data, function (i, e) {
             var data = JSON.parse(e.data.text);
             $('#commentsList').append(
                 $('<li class="comment"></li>')

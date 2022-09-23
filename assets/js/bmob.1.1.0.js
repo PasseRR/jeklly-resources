@@ -92,9 +92,9 @@ function loadMessage(page) {
 
 function renderData(data, current) {
     $("#noResults").hide();
-    if (data.count) {
-        $('#commentsList').children().remove();
-        $('#pagination').children().remove();
+    $('#commentsList').children().remove();
+    $('#pagination').children().remove();
+    if (data) {
         if (pages > 1) {
             for (var page = 1; page <= pages; page++) {
                 $('#pagination').append(

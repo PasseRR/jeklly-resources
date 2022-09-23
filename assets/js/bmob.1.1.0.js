@@ -120,7 +120,7 @@ function renderData(data, current) {
                                     .append($('<h4 class="user"></h4>').text(data.name))
                                     .append($('<h4 class="time"></h4>').text(new Date(e.date).toLocaleString()))
                             )
-                            .append($('<p style="font-size: 13px;word-wrap: break-word;white-space:pre-line;"></p>').text(e.content))
+                            .append($('<p style="font-size: 13px;word-wrap: break-word;white-space:pre-line;"></p>').text(data.content))
                     )
             );
         });

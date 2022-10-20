@@ -174,7 +174,9 @@ div.blog-left img.profile-avatar {
 
 .post-content img,
 .content img {
-    max-width: 100%
+    max-width: 100%;
+    -webkit-box-shadow: 0 0 5px #44444f;
+    border-radius: 1%;
 }
 
 /* Responsive Conditional */
@@ -211,16 +213,19 @@ table {
     width: 100%;
     overflow: auto
 }
+
 table th {
     font-weight: 700;
     padding: 6px 13px;
     border: 1px solid #ddd
 }
+
 table tr {
     background-color: #fff;
     border-top: 1px solid #ccc;
     page-break-inside: avoid;
 }
+
 table tr:nth-child(2n) {
     background-color: #f8f8f8
 }

@@ -236,3 +236,9 @@ table td, table th {
     padding: 6px 13px;
     border: 1px solid #ddd
 }
+
+@media (min-width: 1500px) {
+    .container {
+        width: 1450px
+    }
+}

@@ -1,0 +1,42 @@
+.section-nav {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    max-width: 200px;
+    max-height: calc(100vh - 200px);
+    position: fixed;
+    right: 2.5%;
+}
+
+.section-nav ul {
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+}
+
+.toc-entry {
+    overflow: hidden;
+    padding-top: 1px;
+    text-overflow: ellipsis;
+}
+
+.toc-h2 {
+    padding-left: 15px;
+}
+
+.toc-h3 {
+    padding-left: 15px;
+}
+
+.toc-h4 {
+    padding-left: 15px;
+}
+
+.toc-h5 {
+    padding-left: 15px;
+}
+
+.toc-h6 {
+    padding-left: 15px;
+}

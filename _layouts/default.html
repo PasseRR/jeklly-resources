@@ -114,8 +114,8 @@ layout: compress
     <link rel="stylesheet" href="{{site.theme-cdn}}/assets/css/projects.css">
     <link rel="stylesheet" href="{{site.theme-cdn}}/assets/css/master.1.0.8.css">
     <link rel="stylesheet" href="{{site.theme-cdn}}/assets/css/color.css">
-    <link rel="stylesheet"
-          href="{{site.theme-cdn}}/assets/css/tipuesearch.1.0.1.css">
+    <link rel="stylesheet" href="{{site.theme-cdn}}/assets/css/tipuesearch.1.0.1.css">
+    <link rel="stylesheet" href="{{site.theme-cdn}}/assets/css/toc.css">
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -163,23 +163,31 @@ layout: compress
 </head>
 <body>
 <div class="container">
-    <div class="col-sm-3 blog-left" style="">
+    <div class="col-sm-3" style="">
         <div class="fixed-condition">
-            <a href="/"><img class="profile-avatar"
-                             src="{{ site.avatar_url | default: '/assets/img/avatar.jpg'}}"
-                             height="75px" width="75px"/></a>
-            <h1 class="author-name">{{ site.author | default: 'PasseRR'}}</h1>
-            <div class="profile-about">
-                {{ site.email | default: 'xie__hai@sina.com' }}
+            <div class="blog-left">
+                <a href="/"><img class="profile-avatar"
+                                 src="{{ site.avatar_url | default: '/assets/img/avatar.jpg'}}"
+                                 height="75px" width="75px"/></a>
+                <h1 class="author-name">{{ site.author | default: 'PasseRR'}}</h1>
+                <div class="profile-about">
+                    {{ site.email | default: 'xie__hai@sina.com' }}
+                </div>
+                <div class="social">
+                    <ul>
+                        {% for link in site.data.social %}
+                        <li><a href="{{ link.link }}" target="_blank" title="{{ link.name }}"><i
+                                class="fa {{ link.icon }}"></i></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="social">
-                <ul>
-                    {% for link in site.data.social %}
-                    <li><a href="{{ link.link }}" target="_blank" title="{{ link.name }}"><i
-                            class="fa {{ link.icon }}"></i></a></li>
-                    {% endfor %}
-                </ul>
-            </div>
+
+            <ul class="sidebar-nav">
+                {% for i in site.data.urls %}
+                <li><a class="about" href="{{ i.url }}">{{ i.text }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
         <!-- end /.fixed-condition -->
     </div>
@@ -192,15 +200,7 @@ layout: compress
         </footer>
     </div>
     <div class="right-condition">
-        <ul class="sidebar-nav">
-            <h3>Navigation</h3>
-            <!-- <li><a href="/">博客</a></li>
-            <li><a href="/category/others">博客分类</a></li>
-            <li><a href="/ebook">E-Book</a></li> -->
-            {% for i in site.data.urls %}
-            <li><a class="about" href="{{ i.url }}">{{ i.text }}</a></li>
-            {% endfor %}
-        </ul>
+        {% toc %}
     </div>
     <!-- end /.col-sm-8 -->
 </div>

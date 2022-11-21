@@ -1,0 +1,20 @@
+# 电子书配置
+- name: 设计模式
+  url: /DesignPatterns
+  date: 2017-07-09
+
+- name: JDK8源码阅读
+  url: /Java-Example
+  date: 2017-09-22
+  
+- name: Java版LeetCode
+  url: /JavaLeetCode
+  date: 2018-05-01
+
+- name: JDK各版本特性
+  url: /jdk-features
+  date: 2020-01-24
+  
+- name: 常用中间件安装及使用手册
+  url: /middleware
+  date: 2022-11-18

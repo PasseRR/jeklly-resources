@@ -9,8 +9,9 @@ collections:
     output: true
     permalink: /project/:path/
 
-url: "https://jekyll-blog-theme"
+url: ""
 baseurl: ""
+permalink: /:name:output_ext
 paginate: 15
 per_page: 15
 paginate_path: "/page/:num/"
@@ -46,3 +47,8 @@ compress_html:
   clippings: all
   comments: [ "<!-- ", " -->" ]
   endings: all
+
+plugins:
+  - jekyll-toc
+  - jekyll-paginate
+  - jekyll-relative-links

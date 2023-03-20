@@ -67,13 +67,12 @@ a:hover {
 
 /* Content */
 div.content pre {
-    background: #f8f8f8;
+    background: #f3f4f4;
     padding: 10px;
     /*color: #FFF;*/
     overflow-x: auto;
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: 12px;
-    border: none;
 }
 
 footer {

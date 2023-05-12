@@ -132,33 +132,31 @@ layout: compress
     <script src="{{site.theme-cdn}}/assets/js/bmob.1.1.0.js"></script>
     {% endif %}
 
-    <!-- Google Analytics -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga }}"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+        var isProductEnv = window && window.location && window.location.host
+            && window.location.host.indexOf('//127.0.0.1') === -1
+            && window.location.host.indexOf('//localhost') === -1
+            && window.location.host.indexOf('//192.168.') === -1;
 
-        function gtag() {
-            dataLayer.push(arguments);
+        if (isProductEnv) {
+            // Google Analytics 
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push('js', new Date());
+            dataLayer.push('config', '{{ site.ga }}');
+
+            // 百度统计
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?{{ site.hm }}";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+            _hmt.push(['_setAccount', '{{ site.hm }}']);
+            _hmt.push(['_trackPageview', '{{ page.url }}']);
+            _hmt.push(['_setAutoPageview', true]);
         }
-
-        gtag('js', new Date());
-
-        gtag('config', '{{ site.ga }}');
-    </script>
-
-    <!-- 百度统计 -->
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?{{ site.hm }}";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-        _hmt.push(['_setAccount', '{{ site.hm }}']);
-        _hmt.push(['_trackPageview', '{{ page.url }}']);
-        _hmt.push(['_setAutoPageview', true]);
     </script>
 </head>
 <body>

@@ -151,9 +151,8 @@ blockquote.block-danger h6 {
 
 details summary {
     cursor: pointer;
-    display: inline;
 }
 
-details summary > * {
-    display: inline;
+details > summary:first-of-type {
+    display: list-item;
 }

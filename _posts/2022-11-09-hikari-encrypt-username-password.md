@@ -16,6 +16,14 @@ categories: [java]
 这是标题内容
 ## 标题一标题
 
+```java
+public static void start(android.content.Context context) {
+    android.content.Intent starter = new Intent(context, A.class);
+    starter.putExtra();
+    context.startActivity(starter);
+}
+```
+
 这是标题一
 
 这是标题一

@@ -7,7 +7,9 @@ toc: true
 </header>
 
 <div class="pull-right">
-    <span class="time" title="在Github上编辑这篇文章"><a href="{{site.github.repository}}/blob/{{site.github.branch}}/{{page.path}}" target="_blank"><span class="fa fa-edit"></span></a></span>
+    <span class="time" title="在Github上编辑这篇文章"><a
+            href="{{site.github.repository}}/blob/{{site.github.branch}}/{{page.path}}" target="_blank"><span
+            class="fa fa-edit"></span></a></span>
     <span class="time">{{ page.date | date_to_string }}</span>
     {% if page.categories %}
     <span class="categories">
@@ -18,7 +20,7 @@ toc: true
 
 <div class="content">
     {% if page.mermaid %}
-    <script src="{{site.theme-cdn}}/assets/js/mermaid.min.js"></script>
+    <script src="{{site.theme-cdn}}/assets/js/mermaid-10.3.0.min.js"></script>
     <script>
         $(function () {
             mermaid.initialize({

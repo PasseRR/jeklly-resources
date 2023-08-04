@@ -9,7 +9,7 @@
         } else {
             var code = codes[0];
             // 如果是mermaid图 则不显示复制按钮
-            if ($(code).hasClass('language-mermaid')) {
+            if ($(code).hasClass('language-mermaid') || !$(code).attr('class')) {
                 return;
             }
             text = code.innerText;

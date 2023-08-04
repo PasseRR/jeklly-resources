@@ -3,6 +3,7 @@ layout: post
 title:  标题测试
 last_modified_at: 2022-11-09
 toc: true
+mermaid: true
 categories: [java]
 ---
 
@@ -23,6 +24,19 @@ public static void start(android.content.Context context) {
     context.startActivity(starter);
 }
 ```
+
+```mermaid
+flowchart LR
+A(定义扩展接口) --> B(自定义数据库类型实现扩展) --> C(在flyway自动配置之前注册)
+```
+
+<pre>
+public static void start(android.content.Context context) {
+    android.content.Intent starter = new Intent(context, A.class);
+    starter.putExtra();
+    context.startActivity(starter);
+}
+</pre>
 
 这是标题一
 

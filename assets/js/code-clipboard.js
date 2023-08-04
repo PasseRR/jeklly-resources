@@ -1,5 +1,5 @@
 (function ($) {
-    $('pre.highlight').each(function (index, codeBlock) {
+    $('pre').each(function (index, codeBlock) {
         var btn = $('<button class="fa fa-clipboard" style="border: none; float: right; background: none"></button>');
         $(codeBlock).prepend(btn);
 

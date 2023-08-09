@@ -23,15 +23,11 @@ $(document).ready(function () {
                 '</div></div>').attr('id', uuid);
             var content = modal.find('.modal-dialog').find('.modal-content');
             var btns = $('<div style="z-index: 10; float: right; position: relative; display: flex; justify-content: flex-end;align-items: flex-start; opacity: .8" aria-label="SVG Controls">' +
-                '      <button id="move-up' + uuid + '" class="btn btn-default"><i class="fa fa-arrow-up"></i></button>' +
-                '      <button id="move-down' + uuid + '" class="btn btn-default"><i class="fa fa-arrow-down"></i></button>' +
-                '      <button id="move-left' + uuid + '" class="btn btn-default"><i class="fa fa-arrow-left"></i></button>' +
-                '      <button id="move-right' + uuid + '" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>' +
                 '      <button id="reset' + uuid + '" class="btn btn-default"><i class="fa fa-refresh"></i></button>' +
                 '      <button id="zoom-in' + uuid + '" class="btn btn-default"><i class="fa fa-search-plus"></i></button>' +
                 '      <button id="zoom-out' + uuid + '" class="btn btn-default"><i class="fa fa-search-minus"></i></button>' +
                 '    </div>' +
-                '<div id="svg' + uuid + '" style="position: relative;justify-content: center; align-items: center; display: flex; width: 100%; height: 100%; overflow: hidden">' +
+                '<div id="svg' + uuid + '" style="cursor: grab; position: relative;justify-content: center; align-items: center; display: flex; width: 100%; height: 100%; overflow: hidden">' +
                 '</div>');
             btns.appendTo(content);
             var s = code.find('svg').first().clone();
@@ -56,25 +52,10 @@ $(document).ready(function () {
             $('#' + uuid).modal();
         });
 
-        var moveStep = 15, scaleStep = 0.07;
+        var scaleStep = 0.07;
         var scale = 1, translateX = 0, translateY = 0, svg = $('[name="svg' + uuid + '"]');
 
-        $('#move-up' + uuid).click(function () {
-            console.info("up");
-            move('up');
-        });
-
-        $('#move-down' + uuid).click(function () {
-            move('down');
-        });
-
-        $('#move-left' + uuid).click(function () {
-            move('left');
-        });
-
-        $('#move-right' + uuid).click(function () {
-            move('right');
-        });
+        svg.draggable();
 
         $('#zoom-in' + uuid).click(function () {
             zoom('in');
@@ -88,26 +69,17 @@ $(document).ready(function () {
             reset();
         });
 
+        svg.on('mousewheel', function (event) {
+            // 根据 event.originalEvent.deltaY 的值判断滚轮的方向
+            if (event.originalEvent.deltaY > 0) {
+                zoom('in');
+            } else {
+                zoom('out');
+            }
+        });
+
         function updateTransform() {
             svg.css('transform', 'scale(' + scale + ') translate(' + translateX + 'px, ' + translateY + 'px)')
-        }
-
-        function move(direction) {
-            switch (direction) {
-                case 'up':
-                    translateY -= moveStep;
-                    break;
-                case 'down':
-                    translateY += moveStep;
-                    break;
-                case 'left':
-                    translateX -= moveStep;
-                    break;
-                case 'right':
-                    translateX += moveStep;
-                    break;
-            }
-            updateTransform();
         }
 
         function zoom(zoom) {

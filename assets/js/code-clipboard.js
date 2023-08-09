@@ -8,8 +8,8 @@ $(document).ready(function () {
             codes = $(codeBlock).find('code').first(),
             code = codes.length ? codes : undefined,
             uuid = generateUniqueIdentifier();
-        var copyBtn = $('<button class="fa fa-clipboard" style="border: none; float: right; background: none"></button>'),
-            fullBtn = $('<button class="fa fa-expand" style="border: none; float: right; background: none"></button>');
+        var copyBtn = $('<button class="fa fa-clipboard" style="z-index: 10; border: none; float: right; background: none"></button>'),
+            fullBtn = $('<button class="fa fa-expand" style="z-index: 10; border: none; float: right; background: none"></button>');
         // 不存在code节点或者是mermaid图
         if (!code || !code.hasClass('language-mermaid')) {
             text = code ? code.text() : codeBlock.innerText;

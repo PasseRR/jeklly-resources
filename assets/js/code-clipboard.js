@@ -23,8 +23,8 @@ $(document).ready(function () {
                 '</div></div>').attr('id', uuid);
             var content = modal.find('.modal-dialog').find('.modal-content');
             var btns = $('<div style="z-index: 10; float: right; position: relative; display: flex; justify-content: flex-end;align-items: flex-start; opacity: .8" aria-label="SVG Controls">' +
-                '      <button id="reset' + uuid + '" class="btn btn-default"><i class="fa fa-refresh"></i></button>' +
                 '      <button id="zoom-in' + uuid + '" class="btn btn-default"><i class="fa fa-search-plus"></i></button>' +
+                '      <button id="reset' + uuid + '" class="btn btn-default"><i class="fa fa-refresh"></i></button>' +
                 '      <button id="zoom-out' + uuid + '" class="btn btn-default"><i class="fa fa-search-minus"></i></button>' +
                 '    </div>' +
                 '<div id="svg' + uuid + '" style="cursor: grab; position: relative;justify-content: center; align-items: center; display: flex; width: 100%; height: 100%; overflow: hidden">' +
@@ -53,7 +53,7 @@ $(document).ready(function () {
         });
 
         var scaleStep = 0.07;
-        var scale = 1, translateX = 0, translateY = 0, svg = $('[name="svg' + uuid + '"]');
+        var scale = 1, svg = $('[name="svg' + uuid + '"]');
 
         svg.draggable();
 
@@ -78,8 +78,15 @@ $(document).ready(function () {
             }
         });
 
+        $('#' + uuid).on('hidden.bs.modal', function () {
+            // 在模态框关闭时执行的操作
+            reset();
+        });
+
         function updateTransform() {
-            svg.css('transform', 'scale(' + scale + ') translate(' + translateX + 'px, ' + translateY + 'px)')
+            svg.css('transform', 'scale(' + scale + ')')
+                .css('left', '0px')
+                .css('top', '0px');
         }
 
         function zoom(zoom) {
@@ -96,8 +103,6 @@ $(document).ready(function () {
 
         function reset() {
             scale = 1;
-            translateX = 0;
-            translateY = 0;
             updateTransform();
         }
     });

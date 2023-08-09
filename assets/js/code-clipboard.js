@@ -19,7 +19,7 @@ $(document).ready(function () {
             // 添加svg模态框
             var modal = $('<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                 '<div class="modal-dialog modal-lg" role="document">' +
-                '<div class="modal-content" style="min-height: 200px;">' +
+                '<div class="modal-content">' +
                 '</div></div>').attr('id', uuid);
             var content = modal.find('.modal-dialog').find('.modal-content');
             var btns = $('<div style="z-index: 10; float: right; position: relative; display: flex; justify-content: flex-end;align-items: flex-start; opacity: .8" aria-label="SVG Controls">' +
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 '      <button id="zoom-in' + uuid + '" class="btn btn-default"><i class="fa fa-search-plus"></i></button>' +
                 '      <button id="zoom-out' + uuid + '" class="btn btn-default"><i class="fa fa-search-minus"></i></button>' +
                 '    </div>' +
-                '<div id="svg' + uuid + '" style="position: fixed; justify-content: center; align-items: center; display: flex; width: 100%; height: 100%; overflow: hidden">' +
+                '<div id="svg' + uuid + '" style="position: relative;justify-content: center; align-items: center; display: flex; width: 100%; height: 100%; overflow: hidden">' +
                 '</div>');
             btns.appendTo(content);
             var s = code.find('svg').first().clone();
@@ -56,7 +56,7 @@ $(document).ready(function () {
             $('#' + uuid).modal();
         });
 
-        var moveStep = 10, scaleStep = 0.1;
+        var moveStep = 15, scaleStep = 0.07;
         var scale = 1, translateX = 0, translateY = 0, svg = $('[name="svg' + uuid + '"]');
 
         $('#move-up' + uuid).click(function () {

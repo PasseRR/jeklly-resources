@@ -42,6 +42,23 @@ public static void start(android.content.Context context) {
 this is text
 ```
 
+```mermaid
+flowchart TD
+    start[开始加载Class] --> step1{是否被<BR>当前加载器<BR>加载过}
+    step1 -->|是| resolve{是否需要<BR>链接Class}
+    step1 -->|否| step2{是否存在<BR>父加载器}
+    step2 -->|是| step3[委派父记载器加载]
+    step2 -->|否| step4[委派bootstrap加载器加载]
+    step3 --> step5{是否加载<BR>成功}
+    step4 --> step5
+    step5 -->|是| resolve
+    step5 -->|否| step6[当前加载器加载Class]
+    step6 --> resolve
+    resolve -->|是| step7[链接Class]
+    resolve -->|否| stop[返回加载的Class]
+    step7 --> stop
+```
+
 这是标题一
 
 这是标题一

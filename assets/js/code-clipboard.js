@@ -44,7 +44,7 @@ $(document).ready(function () {
             copyBtn.attr('class', 'fa fa-check').css('color', 'green').text('Copied');
             setTimeout(function () {
                 copyBtn.attr('class', 'fa fa-clipboard').css('color', '').text('');
-            }, 3000);
+            }, 2000);
         });
 
         // 全屏开关
@@ -96,6 +96,7 @@ $(document).ready(function () {
                     break;
                 case 'out':
                     scale -= scaleStep;
+                    scale = scale < 0 ? 0 : scale;
                     break;
             }
             updateTransform();
